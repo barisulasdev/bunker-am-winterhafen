@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WINTERHAFEN BUNKER</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('image2.jpg') center/cover no-repeat fixed; /* Replace 'your-image-url.jpg' with the path to your image */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            cursor: none;
+        }
+
+        p {
+            font-size: 1em;
+            text-align: justify;
+            line-height: 1.8em;
+            padding: 0.2em;
+        }
+
+        a {
+          color: white;
+        }
+
+        #flashlight {
+            --Xpos: 50vw;
+            --Ypos: 50vh;
+        }
+
+        #flashlight:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+            background: radial-gradient(
+                circle 18em at var(--Xpos) var(--Ypos),
+                rgba(0, 0, 0, 0),
+                rgba(0, 0, 0, 100)
+            );
+        }
+
+        @media screen and (max-width: 500px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        #intro-container {
+            position: fixed;
+            bottom: 30px; /* Adjust the bottom distance as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            font-size: 2em;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            z-index: 1; /* Ensure the text appears above the flashlight */
+        }
+
+        #typed-text {
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="flashlight"></div>
+    <div id="intro-container">
+        <div id="typed-text"></div>
+    </div>
+    <p>
+      <!-- Your content here -->
+    </p>
+    <script>
+      let mouseX = 0;
+      let mouseY = 0;
+      let flashlight = document.getElementById('flashlight');
+      const isTouchDevice = () => {
+        try {
+          document.createEvent('TouchEvent');
+          return true;
+        } catch (e) {
+          return false;
+        }
+      };
+
+      function getMousePosition(e) {
+        mouseX = !isTouchDevice() ? e.pageX : e.touches[0].pageX;
+        mouseY = !isTouchDevice() ? e.pageY : e.touches[0].pageY;
+        flashlight.style.setProperty('--Xpos', mouseX + 'px');
+        flashlight.style.setProperty('--Ypos', mouseY + 'px');
+      }
+
+      document.addEventListener('mousemove', getMousePosition);
+      document.addEventListener('touchmove', getMousePosition);
+
+// Typing Animation
+const initialText = 'IN THE PSYCHOLOGY OF THE MODERN CIVILIZED HUMAN BEING, THE SIGNIFICANCE OF THE HOUSE CANNOT BE OVERSTATED.';
+const newText = 'A BUNKER IS NO MORE THAN A HOUSE. JUST ONE THAT YOU WISH YOU WILL NEVER HAVE TO LIVE IN.';
+const thirdText = 'THIRD LINE OF TEXT ANIMATION.';
+const fourthText = 'FOURTH LINE OF TEXT ANIMATION.';
+const fifthText = '<a href="page3.html">●</a>';
+let index = 0;
+const speed = 100; // Typing speed in milliseconds
+const typedTextElement = document.getElementById('typed-text');
+
+function typeWriter(text, callback) {
+    if (index < text.length) {
+        typedTextElement.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(() => typeWriter(text, callback), speed);
+    } else {
+        // Typing animation finished, trigger the callback
+        setTimeout(callback, 1000); // Wait for 1 second, adjust timing as needed
+    }
+}
+
+// Call the typing animation function
+window.onload = function () {
+    typeWriter(initialText, function () {
+        // Animation finished, now do something else
+        setTimeout(function () {
+            // Change the text to the new text
+            typedTextElement.innerHTML = '';
+            index = 0;
+            typeWriter(newText, function () {
+                // Second animation finished, now the third one
+                setTimeout(function () {
+                    typedTextElement.innerHTML = '';
+                    index = 0;
+                    typeWriter(thirdText, function () {
+                        // Third animation finished, now the fourth one
+                        setTimeout(function () {
+                            typedTextElement.innerHTML = '';
+                            index = 0;
+                            typeWriter(fourthText, function () {
+                                // Fourth animation finished, now the fifth one
+                                setTimeout(function () {
+                                    typedTextElement.innerHTML = '';
+                                    index = 0;
+                                    // Display the fifth text as HTML content
+                                    typedTextElement.innerHTML = fifthText;
+                                }, 1000); // Wait for 1 second, adjust timing as needed
+                            });
+                        }, 1000); // Wait for 1 second, adjust timing as needed
+                    });
+                }, 1000); // Wait for 1 second, adjust timing as needed
+            });
+        }, 1000); // Wait for 1 second, adjust timing as needed
+    });
+};
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
