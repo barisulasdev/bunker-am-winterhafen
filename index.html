@@ -1,121 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Bunker am Winterhafen</title>
-    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WINTERHAFEN BUNKER</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
     <style>
         body {
-            background-color: black;
-            font-family: 'Courier New', Courier, monospace;
             margin: 0;
+            overflow: hidden;
+            background: url('') center/cover no-repeat fixed; /* Replace 'your-image-url.jpg' with the path to your image */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        * {
             padding: 0;
-        }
-        header{
-            margin: 20px;
-            padding-left: 20%;
-            padding-right: 20%;
-            color: white;
-        }
-        section{
-            margin: 20px 400px;
-            color: white;
-        }
-        footer{
-            color:white;
-            margin: 20px 400px;
-        }
-        h1{
-            font-size: 60px;
-        }
-        ul{
             margin: 0;
-            padding: 0;
-            list-style-type: none;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            cursor: none;
         }
-        li{
-            display: inline-block;
-            margin-right: 20px;
+
+        p {
+            font-size: 1em;
+            text-align: justify;
+            line-height: 1.8em;
+            padding: 0.2em;
         }
-        a:link{
-            color: white;
-            text-decoration: none;
+
+        a {
+          color: white;
         }
-        a:visited{
-            color: white;
-            text-decoration: none;
+
+        #flashlight {
+            --Xpos: 50vw;
+            --Ypos: 50vh;
         }
-        a:hover{
-            color: pink;
-            text-decoration: none;
-        }
-        canvas {
+
+        #flashlight:before {
+            content: '';
             display: block;
-        }
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
             width: 100%;
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+            background: black;
+        }
+
+        @media screen and (max-width: 500px) {
+            body {
+                font-size: 14px;
             }
-        .align {
-            hyphens: auto; 
-            text-align: justify
         }
-        img {
-            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");   
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            filter: grayscale(100%);
-            filter: gray; /* IE 6-9 */
+
+        #intro-container {
+            position: fixed;
+            top: 50%; /* Adjust the vertical centering */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Adjust for horizontal and vertical centering */
+            color: white;
+            text-align: center;
+            font-size: 2em;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+            z-index: 1; /* Ensure the text appears above the flashlight */
         }
-        img:hover {
-            -webkit-filter: none;
-            -moz-filter: none;
-            -ms-filter: none;
-            filter: none;
+
+        #typed-text {
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul><br/>
-        <h1>From Blueprint to Battlefield: The Winterhafen Bunker</h1>
-    </header>
-    <header class="align">
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p><br />
-        <img src="image1.jpg" alt="" class="center"><br />
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-        </p>
-    </header>
-    <footer>
+    <div id="flashlight"></div>
+    <div id="intro-container">
+        <div id="typed-text"></div>
+    </div>
+    <p>
+      <!-- Your content here -->
+    </p>
+    <script>
+      let mouseX = 0;
+      let mouseY = 0;
+      let flashlight = document.getElementById('flashlight');
+      const isTouchDevice = () => {
+        try {
+          document.createEvent('TouchEvent');
+          return true;
+        } catch (e) {
+          return false;
+        }
+      };
 
-    </footer>
+      function getMousePosition(e) {
+        mouseX = !isTouchDevice() ? e.pageX : e.touches[0].pageX;
+        mouseY = !isTouchDevice() ? e.pageY : e.touches[0].pageY;
+        flashlight.style.setProperty('--Xpos', mouseX + 'px');
+        flashlight.style.setProperty('--Ypos', mouseY + 'px');
+      }
 
-    
+      document.addEventListener('mousemove', getMousePosition);
+      document.addEventListener('touchmove', getMousePosition);
+
+      // Typing Animation
+      const initialText = 'HELLO.';
+      const newText = 'WHEN YOU SEE A ● CLICK ON IT TO GET TO THE NEXT CHAPTER.';
+      const thirdText = 'A CONCRETE STRUCTURE CAUGHT THE ATTENTION OF A STUDENT ON A FIELD TRIP. THAT NIGHT THE STUDENT RETURNED TO WHAT APPEARS TO BE A WW2 BUNKER TO INVESTIGATE IT FURTHER FOR A SCHOOL PROJECT. THE STUDENT APPROACHED THE BUNKER WITH NOTHING MORE THAN A FLASHLIGHT.';
+      const fourthText = 'YOU ARE THE STUDENT. GOOD LUCK.';
+      const fifthText = '<a href="page2.html">●</a>';
+      let index = 0;
+      const speed = 100; // Typing speed in milliseconds
+      const typedTextElement = document.getElementById('typed-text');
+
+      function typeWriter(text, callback) {
+        if (index < text.length) {
+          typedTextElement.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(() => typeWriter(text, callback), speed);
+        } else {
+          // Typing animation finished, trigger the callback
+          setTimeout(callback, 1000); // Wait for 1 second, adjust timing as needed
+        }
+      }
+
+      // Call the typing animation function
+      window.onload = function () {
+        typeWriter(initialText, function () {
+          // Animation finished, now do something else
+          setTimeout(function () {
+            // Change the text to the new text
+            typedTextElement.innerHTML = '';
+            index = 0;
+            typeWriter(newText, function () {
+              // Second animation finished, now the third one
+              setTimeout(function () {
+                typedTextElement.innerHTML = '';
+                index = 0;
+                typeWriter(thirdText, function () {
+                  // Third animation finished, now the fourth one
+                  setTimeout(function () {
+                    typedTextElement.innerHTML = '';
+                    index = 0;
+                    typeWriter(fourthText, function () {
+                      // Fourth animation finished, now the fifth one
+                      setTimeout(function () {
+                        typedTextElement.innerHTML = '';
+                        index = 0;
+                        // Display the fifth text as HTML content
+                        typedTextElement.innerHTML = fifthText;
+                      }, 1000); // Wait for 1 second, adjust timing as needed
+                    });
+                  }, 1000); // Wait for 1 second, adjust timing as needed
+                });
+              }, 1000); // Wait for 1 second, adjust timing as needed
+            });
+          }, 1000); // Wait for 1 second, adjust timing as needed
+        });
+      };
+    </script>
+    <script src="script.js"></script>
 </body>
-
-
-
 </html>
+
